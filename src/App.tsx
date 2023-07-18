@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+
+
 function App() {
+  function handleJump(e:React.SyntheticEvent) {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      jumpTo: {value:string};
+    }
+    window.open("https://bynder.atlassian.net/browse/" +  target.jumpTo.value, '_blank');
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form onSubmit={handleJump}>
+        <input type="text" name="jumpTo"/>
+        <button type="submit">Go</button>
+      </form>
     </div>
   );
 }
