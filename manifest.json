@@ -5,6 +5,7 @@
     "description": "Jump into your Jira distribution is a flash by specifying the issue or project",
     "action": {
         "default_popup": "js/index.html",
+        "default_title": "Jump to Jira",
         "default_icon": "jira.png"
     },
     "icons": {
