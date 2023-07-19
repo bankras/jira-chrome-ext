@@ -4,7 +4,8 @@ const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
     entry: {
-        index: "./src/index.tsx"
+        index: "./src/index.tsx",
+        options: "./src/options.tsx"
     },
     mode: "production",
     module: {
@@ -37,7 +38,7 @@ module.exports = {
                 { from: "public/", to: "../"},
             ],
         }),
-        ...getHtmlPlugins(["index"]),
+        ...getHtmlPlugins(["index", "options"]),
     ],
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
@@ -52,7 +53,7 @@ function getHtmlPlugins(chunks) {
     return chunks.map(
         (chunk) =>
             new HTMLPlugin({
-                title: "React extension",
+                title: "Jira Chrome Extension",
                 filename: `${chunk}.html`,
                 chunks: [chunk],
             })

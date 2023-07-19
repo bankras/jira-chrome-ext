@@ -1,0 +1,13 @@
+.error {
+    color:red;
+}
+input {
+    width:15rem;
+}
+.Config {
+    margin:1rem;
+}
+label {
+    display:block;
+    margin-block:1rem;
+}
