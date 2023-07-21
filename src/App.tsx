@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import {useChromeStorageSync} from "use-chrome-storage";
 
-
-
 function App() {
   const [{jiraHost, jiraUser},] = useChromeStorageSync('config', {jiraHost:'', jiraUser:''});
+  if(!jiraHost || !jiraUser) {
+    chrome.runtime.openOptionsPage()
+  }
 
   function handleJump(e:React.SyntheticEvent) {
     e.preventDefault();
