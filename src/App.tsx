@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
-import {useChromeStorageSync} from "use-chrome-storage";
 
 function App() {
-  const [{jiraHost, jiraUser},] = useChromeStorageSync('config', {jiraHost:'', jiraUser:''});
-  if(!jiraHost || !jiraUser) {
-    chrome.runtime.openOptionsPage()
-  }
+
+  const [jiraHost, setJiraHost] = useState(null);
+  const [jiraUser, setJiraUser] = useState(null);
+
+  useEffect(() => {
+    chrome.storage.sync.get('config').then(({ config }) => {
+      if (!config.jiraHost || !config.jiraUser) {
+        chrome.runtime.openOptionsPage()
+
+        return;
+      }
+
+      setJiraHost(config.jiraHost);
+      setJiraUser(config.jiraUser);
+    })
+  }, [])
 
   function handleJump(e:React.SyntheticEvent) {
     e.preventDefault();
