@@ -1,4 +1,5 @@
 # Jira Chrome Extension
+![workflow](https://github.com/bankras/jira-chrome-ext/actions/workflows/main.yml/badge.svg)
 
 This project is intended to make it easy to quickly deeplink into your jira instance. By specifying either issue key or project name a new tab is opened in your browser with that target.
 
