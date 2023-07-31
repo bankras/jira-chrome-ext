@@ -6,8 +6,12 @@ import Config from "./Config";
 describe('Configuration', () => {
 
     it('should initialy render empty inputs', async () => {
+        const config = {config: {}};
+        chrome.storage.sync.get.mockImplementation(() =>
+            Promise.resolve(config))
+
         render(<Config/>);
-        expect(screen.getByLabelText('Jira hostname:')).toHaveValue('');
+        await waitFor(() => expect(screen.getByLabelText('Jira hostname:')).toHaveValue(''));
         expect(screen.getByLabelText('Jira username:')).toHaveValue('');
     });
 
