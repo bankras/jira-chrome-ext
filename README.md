@@ -23,3 +23,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 7. Find the extension and give it a shortkey (example Cmd+J)
 8. Ready to go!
 
+## Releasing
+
+1. Make sure versions are updated in [manifest.json](./manifest.json) and [package.json](./package.json)
+2. Commit everything to a branch and let to PR be merged.
+3. Create the binaries by running `npm run build` followed by `tar -zcvf ../jira-chrome-ext.tgz .` in the dist folder.
+4. Create a new release on GitHub and upload the binaries.
