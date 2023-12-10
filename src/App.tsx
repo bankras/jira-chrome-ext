@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     chrome.storage.sync.get('config').then(({ config }) => {
-      if (!config.jiraHost || !config.jiraUser) {
+      if (!config || !config.jiraHost || !config.jiraUser) {
         chrome.runtime.openOptionsPage()
 
         return;
@@ -44,6 +44,9 @@ function App() {
         <li onClick={handleCreated}>Created tickets</li>
         <li onClick={handleUpdated}>Updated tickets</li>
       </ul>
+      <div className="footer">
+        <span>Version: {__APP_VERSION__}</span>
+      </div>
     </div>
   );
 }
