@@ -12,8 +12,8 @@ describe('Configuration', () => {
 
         render(<Config/>);
         await waitFor(() => {
-            expect(screen.getByTestId('jiraHost').nodeValue).toBeNull()
-            expect(screen.getByTestId('jiraUser').nodeValue).toBeNull();
+            expect((screen.getByTestId('jiraHost') as HTMLInputElement).value).toBe("");
+            expect((screen.getByTestId('jiraUser') as HTMLInputElement).value).toBe("");
         });
     });
 
@@ -24,8 +24,8 @@ describe('Configuration', () => {
 
         render(<Config/>);
         await waitFor(() => {
-            expect(screen.getByTestId('jiraHost').value).toBe("<<host>>");
-            expect(screen.getByTestId('jiraUser').value).toBe('<<user>>');
+            expect((screen.getByTestId('jiraHost') as HTMLInputElement).value).toBe("<<host>>");
+            expect((screen.getByTestId('jiraUser') as HTMLInputElement).value).toBe("<<user>>");
         });
     });
 });
