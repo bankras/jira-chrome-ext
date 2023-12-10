@@ -51,10 +51,10 @@ function Config() {
     return (
         <form className="Config" onSubmit={updateConfig}>
             <label>Jira hostname:
-                <input name='jiraHost' placeholder="https://domain.atlassian.net/" value={config.jiraHost} onChange={updateHost}/>
+                <input data-testid='jiraHost' name='jiraHost' placeholder="https://domain.atlassian.net/" value={config.jiraHost} onChange={updateHost}/>
             </label>
             <label>Jira username:
-                <input name='jiraUser' value={config.jiraUser} onChange={updateUser}/>
+                <input data-testid='jiraUser' name='jiraUser' value={config.jiraUser} onChange={updateUser}/>
             </label>
             <input type="submit" value="Save"/>
             <div>{error}</div>

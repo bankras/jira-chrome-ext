@@ -44,6 +44,9 @@ function App() {
         <li onClick={handleCreated}>Created tickets</li>
         <li onClick={handleUpdated}>Updated tickets</li>
       </ul>
+      <div className="footer">
+        <span>Version: {__APP_VERSION__}</span>
+      </div>
     </div>
   );
 }

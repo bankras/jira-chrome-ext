@@ -2,18 +2,9 @@
   padding: 0.5rem;
 }
 
-.container {
-  width: 13rem;
-  background-color: #00AAFF;
-}
-
-body {
-  margin:0;
-}
-
-input {
-  width: 8rem;
-  font-size: 1.5rem;
+.footer {
+  text-align: right;
+  font-size: .4rem;
 }
 
 button {
