@@ -7,9 +7,7 @@ describe('jira extension', () => {
     const spy = vi.spyOn(chrome.runtime, 'openOptionsPage');
 
     test('should open options if there is no config', async () => {
-        vi.spyOn(chrome.storage.sync, 'get').mockImplementation(() => {
-            return Promise.resolve({config: {}});
-        });
+        vi.spyOn(chrome.storage.sync, 'get').mockImplementation(() => Promise.resolve({}));
 
         render(<App/>);
 

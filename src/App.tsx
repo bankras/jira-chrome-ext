@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     chrome.storage.sync.get('config').then(({ config }) => {
-      if (!config.jiraHost || !config.jiraUser) {
+      if (!config || !config.jiraHost || !config.jiraUser) {
         chrome.runtime.openOptionsPage()
 
         return;
