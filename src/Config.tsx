@@ -5,7 +5,11 @@ function Config() {
     const [config, setConfig] = useState({jiraHost:'', jiraUser:''});
     const [error, setError] = useState('');
     useEffect(() => {
-        chrome.storage.sync.get('config').then(({ config }) => setConfig(config))
+        chrome.storage.sync.get('config').then(({ config }) => {
+            if(config) {
+                setConfig(config);
+            }
+        })
     }, [])
 
     function updateHost(e: React.ChangeEvent<HTMLInputElement>) {
