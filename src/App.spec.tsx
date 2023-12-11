@@ -1,7 +1,8 @@
 import {vi, describe, expect, test} from 'vitest'
 import App from "./App.tsx";
-import {render, screen} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom'
+import {act} from "react-dom/test-utils";
 
 describe('jira extension', () => {
     const spy = vi.spyOn(chrome.runtime, 'openOptionsPage');
@@ -10,6 +11,7 @@ describe('jira extension', () => {
         vi.spyOn(chrome.storage.sync, 'get').mockImplementation(() => Promise.resolve({}));
 
         render(<App/>);
+        await act(async () => {});
 
         await vi.waitFor(() => expect(spy).toBeCalled());
     });
@@ -21,6 +23,7 @@ describe('jira extension', () => {
         });
 
         render(<App/>);
+        await act(async () => {});
 
         const linkCreatedElement = screen.getByText(/Created tickets/i);
         // Waiting for this check because the initial render also causes a component rerender
@@ -29,5 +32,36 @@ describe('jira extension', () => {
 
         const linkUpdatedElement = screen.getByText(/Updated tickets/i);
         expect(linkUpdatedElement).toBeInTheDocument();
+    });
+
+    test('should open a new tab with the jira query', async () => {
+        const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);
+
+        const wrapper = render(<App/>);
+        await act(async () => {});
+
+        fireEvent.click(wrapper.getByText('Created tickets'));
+
+        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=creator=currentUser()%20order%20by%20created%20DESC', '_blank');
+    });
+    test('should open a new tab with the jira query', async () => {
+        const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);
+
+        const wrapper = render(<App/>);
+        await act(async () => {});
+
+        fireEvent.click(wrapper.getByText('Updated tickets'));
+
+        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=issuekey%20IN%20updatedBy(%22%3C%3Cuser%3E%3E%22,%20%22-1d%22)', '_blank');
+    });
+    test('should open a new tab with the jira query', async () => {
+        const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);
+
+        const wrapper = render(<App/>);
+        await act(async () => {});
+
+        fireEvent.click(wrapper.getByText('Assigned to me tickets'));
+
+        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=assignee=currentUser()%20order%20by%20updated%20DESC', '_blank');
     });
 });

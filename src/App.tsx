@@ -33,6 +33,9 @@ function App() {
   function handleUpdated() {
     window.open(jiraHost + 'issues/?jql=' +encodeURI('issuekey IN updatedBy("'+jiraUser+'", "-1d")'), '_blank');
   }
+  function handleAssigned() {
+    window.open(jiraHost + 'issues/?jql=' +encodeURI('assignee=currentUser() order by updated DESC'), '_blank');
+  }
 
   return (
     <div className="App">
@@ -43,6 +46,7 @@ function App() {
       <ul className="links">
         <li onClick={handleCreated}>Created tickets</li>
         <li onClick={handleUpdated}>Updated tickets</li>
+        <li onClick={handleAssigned}>Assigned to me tickets</li>
       </ul>
       <div className="footer">
         <span>Version: {__APP_VERSION__}</span>
