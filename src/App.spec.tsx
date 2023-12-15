@@ -62,6 +62,6 @@ describe('jira extension', () => {
 
         fireEvent.click(wrapper.getByText('Assigned to me tickets'));
 
-        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=assignee=currentUser()%20order%20by%20updated%20DESC', '_blank');
+        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=assignee=currentUser()%20and%20statuscategory!=done%20order%20by%20updated%20DESC', '_blank');
     });
 });

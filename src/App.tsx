@@ -34,7 +34,7 @@ function App() {
     window.open(jiraHost + 'issues/?jql=' +encodeURI('issuekey IN updatedBy("'+jiraUser+'", "-1d")'), '_blank');
   }
   function handleAssigned() {
-    window.open(jiraHost + 'issues/?jql=' +encodeURI('assignee=currentUser() order by updated DESC'), '_blank');
+    window.open(jiraHost + 'issues/?jql=' +encodeURI('assignee=currentUser() and statuscategory!=done order by updated DESC'), '_blank');
   }
 
   return (
