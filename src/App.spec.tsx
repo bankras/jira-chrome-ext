@@ -42,7 +42,7 @@ describe('jira extension', () => {
 
         fireEvent.click(wrapper.getByText('Created tickets'));
 
-        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=creator=currentUser()%20order%20by%20created%20DESC', '_blank');
+        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=reporter=currentUser()%20order%20by%20created%20DESC', '_blank');
     });
     test('should open a new tab with the jira query', async () => {
         const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);

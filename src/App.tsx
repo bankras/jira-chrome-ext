@@ -28,7 +28,7 @@ function App() {
 
   }
   function handleCreated() {
-    window.open(jiraHost + 'issues/?jql=' + encodeURI('creator=currentUser() order by created DESC'), '_blank');
+    window.open(jiraHost + 'issues/?jql=' + encodeURI('reporter=currentUser() order by created DESC'), '_blank');
   }
   function handleUpdated() {
     window.open(jiraHost + 'issues/?jql=' +encodeURI('issuekey IN updatedBy("'+jiraUser+'", "-1d")'), '_blank');
