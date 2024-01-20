@@ -1,5 +1,5 @@
 {
-    "version": "0.3.1",
+    "version": "0.3.2",
     "manifest_version": 3,
     "name": "Jira Chrome Extension",
     "description": "Jump into your Jira distribution is a flash by specifying the issue or project",
