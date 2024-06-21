@@ -2,7 +2,7 @@ import {vi, describe, expect, test} from 'vitest'
 import App from "./App.tsx";
 import {fireEvent, render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom'
-import {act} from "react-dom/test-utils";
+import {act} from "react";
 
 describe('jira extension', () => {
     const spy = vi.spyOn(chrome.runtime, 'openOptionsPage');
