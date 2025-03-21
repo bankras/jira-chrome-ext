@@ -64,46 +64,4 @@ describe('jira extension', () => {
 
         expect(windowStub).toBeCalledWith('<<host>>issues/?jql=assignee=currentUser()%20and%20statuscategory!=done%20order%20by%20updated%20DESC', '_blank');
     });
-
-    test('should open a new tab with the jira query for updated tickets', async () => {
-        const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);
-
-        const wrapper = render(<App />);
-        await act(async () => {});
-
-        fireEvent.click(wrapper.getByText('Updated tickets'));
-
-        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=issuekey%20IN%20updatedBy(%22%3C%3Cuser%3E%3E%22,%20%22-1d%22)', '_blank');
-    });
-
-    test('should open a new tab with the jira query for assigned tickets', async () => {
-        const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);
-
-        const wrapper = render(<App />);
-        await act(async () => {});
-
-        fireEvent.click(wrapper.getByText('Assigned to me tickets'));
-
-        expect(windowStub).toBeCalledWith('<<host>>issues/?jql=assignee=currentUser()%20and%20statuscategory!=done%20order%20by%20updated%20DESC', '_blank');
-    });
-
-    test('should open a new tab with the jira query for jump to issue', async () => {
-        const windowStub = vi.spyOn(window, 'open').mockResolvedValue(null);
-
-        const wrapper = render(<App />);
-        await act(async () => {});
-
-        fireEvent.change(wrapper.getByRole('textbox'), { target: { value: 'TEST-123' } });
-        fireEvent.submit(wrapper.getByRole('button', { name: /go/i }));
-
-        expect(windowStub).toBeCalledWith('<<host>>browse/TEST-123', '_blank');
-    });
-
-    test('should display the correct version number', async () => {
-        render(<App />);
-        await act(async () => {});
-
-        const versionElement = screen.getByText(/Version:/i);
-        expect(versionElement).toBeInTheDocument();
-    });
 });

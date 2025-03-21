@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
 
   const [jiraHost, setJiraHost] = useState(null);
   const [jiraUser, setJiraUser] = useState(null);
+  const [jumpValue, setJumpValue] = useState("");
 
   useEffect(() => {
     chrome.storage.sync.get('config').then(({ config }) => {
@@ -19,12 +20,9 @@ function App() {
     })
   }, [])
 
-  function handleJump(e:React.SyntheticEvent) {
+  function handleJump(e: React.FormEvent) {
     e.preventDefault();
-    const target = e.target as typeof e.target & {
-      jumpTo: {value:string};
-    }
-    window.open(jiraHost +'browse/' +  target.jumpTo.value, '_blank');
+    window.open(jiraHost +'browse/' +  jumpValue, '_blank');
 
   }
   function handleCreated() {
@@ -33,6 +31,7 @@ function App() {
   function handleUpdated() {
     window.open(jiraHost + 'issues/?jql=' +encodeURI('issuekey IN updatedBy("'+jiraUser+'", "-1d")'), '_blank');
   }
+
   function handleAssigned() {
     window.open(jiraHost + 'issues/?jql=' +encodeURI('assignee=currentUser() and statuscategory!=done order by updated DESC'), '_blank');
   }
@@ -40,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleJump}>
-        <input type="text" name="jumpTo" autoFocus/>
+        <input type="text" name="jumpTo" autoFocus onChange={e => setJumpValue(e.target.value)}/>
         <button type="submit">Go</button>
       </form>
       <ul className="links">

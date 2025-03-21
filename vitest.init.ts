@@ -1,5 +1,6 @@
 // vitest.init.js
 import {vi} from "vitest";
+import '@testing-library/jest-dom';
 
 const chromeMock = {
     storage: {
