@@ -28,7 +28,28 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Releasing
 
-1. Make sure versions are updated in [manifest.json](public/manifest.json) and [package.json](./package.json)
-2. Commit everything to a branch and let the PR be merged.
-3. Create the binaries by running `npm run build` followed by `tar -zcvf ../jira-chrome-ext.tgz .` in the dist folder.
-4. Create a new release on GitHub and upload the binaries.
+Releases are automated through GitHub Actions when tags are pushed.
+
+### Automated Release Process
+
+1. Update versions in [manifest.json](public/manifest.json) and [package.json](./package.json)
+2. Commit changes to main branch
+3. Create and push a version tag:
+   ```bash
+   git tag v1.0.1
+   git push origin v1.0.1
+   ```
+4. GitHub Actions will automatically:
+   - Run tests and linting
+   - Build the extension
+   - Create a release package (.tgz)
+   - Create a GitHub release with the package attached
+
+### Manual Release Process
+
+If you need to create a release manually:
+
+1. Update versions in [manifest.json](public/manifest.json) and [package.json](./package.json)
+2. Build: `npm run build`
+3. Package: `tar -zcvf jira-chrome-ext-v1.0.1.tgz -C dist .`
+4. Create GitHub release with `gh release create` or through the web interface
