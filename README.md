@@ -1,7 +1,8 @@
 # Jira Chrome Extension
 ![workflow](https://github.com/bankras/jira-chrome-ext/actions/workflows/main.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/bankras/jira-chrome-ext/badge.svg?branch=main)](https://coveralls.io/github/bankras/jira-chrome-ext?branch=main)
-![Code Quality](https://github.com/bankras/jira-chrome-ext/actions/workflows/main.yml/badge.svg)
+![Version](https://img.shields.io/github/package-json/v/bankras/jira-chrome-ext)
+![Last Commit](https://img.shields.io/github/last-commit/bankras/jira-chrome-ext)
 
 This project is intended to make it easy to quickly deeplink into your jira instance. By specifying either issue key or project name a new tab is opened in your browser with that target.
 
