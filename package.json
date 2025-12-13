@@ -12,8 +12,8 @@
     "coverage": "vitest --coverage --run"
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
@@ -34,7 +34,7 @@
     "globals": "^16.0.0",
     "jsdom": "^26.0.0",
     "typescript": "^5.8.2",
-    "vite": "^6.3.5",
+    "vite": "^6.4.1",
     "vitest": "^3.1.1"
   }
 }
