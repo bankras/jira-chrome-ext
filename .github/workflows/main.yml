@@ -51,7 +51,7 @@ jobs:
           tar -zcvf ../jira-chrome-ext-${{ github.ref_name }}.tgz .
           cd ..
       - name: Create Release
-        uses: gh-actions-community/action-create-release@main
+        uses: notpeelz/github-create-release@v5.0.1
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
